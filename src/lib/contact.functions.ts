@@ -13,27 +13,33 @@ export type ContactInput = z.infer<typeof contactSchema>;
 export const submitInquiry = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => contactSchema.parse(data))
   .handler(async ({ data }) => {
-    const { createClient } = await import("@supabase/supabase-js");
-    const supabase = createClient(
-      process.env["SUPABASE_URL"]!,
-      process.env["SUPABASE_PUBLISHABLE_KEY"]!,
-      { auth: { persistSession: false, autoRefreshToken: false } },
+    const id = crypto.randomUUID();
+    const apiKey = process.env["SUPABASE_PUBLISHABLE_KEY"]!;
+
+    const response = await fetch(
+      `${process.env["SUPABASE_URL"]}/rest/v1/contact_submissions`,
+      {
+        method: "POST",
+        headers: {
+          apikey: apiKey,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify({
+          id,
+          full_name: data.fullName,
+          email: data.email,
+          subject: data.subject,
+          message: data.message,
+        }),
+      },
     );
 
-    const id = crypto.randomUUID();
-
-    const { error } = await supabase.from("contact_submissions").insert({
-      id,
-      full_name: data.fullName,
-      email: data.email,
-      subject: data.subject,
-      message: data.message,
-    });
-
-    if (error) {
-      console.error("contact insert failed", error.message);
+    if (!response.ok) {
+      console.error("contact insert failed", response.status, await response.text());
       throw new Error("We couldn't record your inquiry. Please try again.");
     }
+
 
     const { notifyInquiry } = await import("./contact-notify.server");
     await notifyInquiry({ id, ...data });
