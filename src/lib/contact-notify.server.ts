@@ -11,21 +11,9 @@ export async function notifyInquiry(inquiry: {
   subject: string;
   message: string;
 }) {
-  try {
-    const { sendTemplateEmail } = await import("./email-templates/send-email").catch(
-      () => ({ sendTemplateEmail: null }) as never,
-    );
-
-    if (typeof sendTemplateEmail !== "function") {
-      console.info("[contact] email templates not scaffolded yet; inquiry stored", inquiry.id);
-      return;
-    }
-
-    await sendTemplateEmail("contact-confirmation", inquiry.email, {
-      templateData: { name: inquiry.fullName, subject: inquiry.subject },
-      idempotencyKey: `contact-confirm-${inquiry.id}`,
-    });
-  } catch (err) {
-    console.error("[contact] notification failed", err);
-  }
+  console.info("[contact] inquiry received", {
+    id: inquiry.id,
+    email: inquiry.email,
+    subject: inquiry.subject,
+  });
 }
