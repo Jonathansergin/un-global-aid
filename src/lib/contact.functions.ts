@@ -20,16 +20,15 @@ export const submitInquiry = createServerFn({ method: "POST" })
       { auth: { persistSession: false, autoRefreshToken: false } },
     );
 
-    const { data: row, error } = await supabase
-      .from("contact_submissions")
-      .insert({
-        full_name: data.fullName,
-        email: data.email,
-        subject: data.subject,
-        message: data.message,
-      })
-      .select("id")
-      .single();
+    const id = crypto.randomUUID();
+
+    const { error } = await supabase.from("contact_submissions").insert({
+      id,
+      full_name: data.fullName,
+      email: data.email,
+      subject: data.subject,
+      message: data.message,
+    });
 
     if (error) {
       console.error("contact insert failed", error.message);
@@ -37,7 +36,8 @@ export const submitInquiry = createServerFn({ method: "POST" })
     }
 
     const { notifyInquiry } = await import("./contact-notify.server");
-    await notifyInquiry({ id: row.id, ...data });
+    await notifyInquiry({ id, ...data });
 
-    return { ok: true as const, id: row.id };
+    return { ok: true as const, id };
   });
+
