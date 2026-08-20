@@ -311,6 +311,7 @@ function Index() {
               </div>
             ) : (
               <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+                <input type="hidden" name="_captcha" value="false" />
                 <div>
                   <label
                     htmlFor="fullName"
