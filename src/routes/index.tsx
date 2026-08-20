@@ -1,8 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { useState, type FormEvent } from "react";
 
-import { submitInquiry } from "@/lib/contact.functions";
 import heroField from "@/assets/hero-field.jpg";
 import reportSolar from "@/assets/report-solar.jpg";
 import reportClinic from "@/assets/report-clinic.jpg";
