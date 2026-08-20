@@ -105,7 +105,6 @@ const pillars = [
 ];
 
 function Index() {
-  const send = useServerFn(submitInquiry);
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -116,14 +115,12 @@ function Index() {
     setStatus("sending");
     setError(null);
     try {
-      await send({
-        data: {
-          fullName: String(fd.get("fullName") ?? ""),
-          email: String(fd.get("email") ?? ""),
-          subject: String(fd.get("subject") ?? ""),
-          message: String(fd.get("message") ?? ""),
-        },
+      const response = await fetch("https://formsubmit.co/ajax/info@ukraineunu.org", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: fd,
       });
+      if (!response.ok) throw new Error("Submission failed");
       form.reset();
       setStatus("sent");
     } catch (err) {
