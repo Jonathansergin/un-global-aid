@@ -357,28 +357,29 @@ function Index() {
             <span className="text-[10px] font-semibold uppercase tracking-widest">UN Ukraine</span>
           </div>
 
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid gap-8 md:grid-cols-2">
             <div className="flex flex-col gap-3">
               <span className="text-[11px] font-semibold uppercase text-muted-foreground">
                 Governance
               </span>
-              <nav className="flex flex-col gap-2 text-sm text-muted-foreground">
-                <a href="#contact">Legal Status</a>
-                <a href="#contact">Transparency</a>
-                <a href="#contact">Procurement</a>
-              </nav>
+              <div className="flex flex-col">
+                {GOVERNANCE_ENTRIES.map((entry) => (
+                  <DisclosureEntry key={entry.title} {...entry} />
+                ))}
+              </div>
             </div>
             <div className="flex flex-col gap-3">
               <span className="text-[11px] font-semibold uppercase text-muted-foreground">
                 Updates
               </span>
-              <nav className="flex flex-col gap-2 text-sm text-muted-foreground">
-                <a href="#contact">Press Releases</a>
-                <a href="#contact">Data Portal</a>
-                <a href="#contact">Reports</a>
-              </nav>
+              <div className="flex flex-col">
+                {UPDATE_ENTRIES.map((entry) => (
+                  <DisclosureEntry key={entry.title} {...entry} />
+                ))}
+              </div>
             </div>
           </div>
+
 
           <div className="border-t border-border pt-8">
             <p className="text-[10px] uppercase leading-relaxed text-muted-foreground">
