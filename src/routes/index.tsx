@@ -309,8 +309,9 @@ function Index() {
                     className="h-10 w-full rounded-sm border border-border bg-secondary px-3 text-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand/30"
                   >
                     <option>Program Partnership</option>
+                    <option>Contract Retirement Procedures</option>
                     <option>Field Media Request</option>
-                    <option>Policy Inquiry</option>
+
                   </select>
                 </div>
                 <div>
