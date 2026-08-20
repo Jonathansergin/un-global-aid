@@ -98,9 +98,6 @@ function Index() {
               <span className="text-brand">Ukraine</span>
             </span>
           </div>
-          <div className="border border-border px-2 py-1 text-[10px] font-medium uppercase tracking-wider">
-            Dispatch 24-02
-          </div>
         </div>
       </header>
 
