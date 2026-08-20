@@ -7,6 +7,60 @@ import heroField from "@/assets/hero-field.jpg";
 import reportSolar from "@/assets/report-solar.jpg";
 import reportClinic from "@/assets/report-clinic.jpg";
 
+type Entry = { title: string; body: string };
+
+const GOVERNANCE_ENTRIES: Entry[] = [
+  {
+    title: "Legal Status",
+    body: "UN Ukraine operates under the Convention on the Privileges and Immunities of the United Nations (1946) and the Host Country Agreement with the Government of Ukraine. The Resident Coordinator represents the Secretary-General in-country and leads the UN Country Team, whose mandate is set out in the United Nations Sustainable Development Cooperation Framework agreed with national authorities.",
+  },
+  {
+    title: "Transparency",
+    body: "All programme expenditure is published against IATI (International Aid Transparency Initiative) standards and independently audited each year. Financial statements, donor contributions and results frameworks are open to the public, and allegations of fraud or misconduct can be reported confidentially to the Office of Internal Oversight Services without retaliation.",
+  },
+  {
+    title: "Procurement",
+    body: "Goods, works and services are sourced through open international competition following the UN Procurement Manual: fairness, integrity, transparency, effective competition and best value for money. Suppliers must register on the UN Global Marketplace, accept the UN Supplier Code of Conduct, and are evaluated on technical compliance, environmental performance and price. Local Ukrainian suppliers are actively encouraged to bid.",
+  },
+];
+
+const UPDATE_ENTRIES: Entry[] = [
+  {
+    title: "Press Releases",
+    body: "Official statements from the Resident Coordinator, joint agency communiqués and field briefings are issued in Ukrainian and English. Recent releases cover winter response funding, the restoration of energy infrastructure, and expanded mine-action operations in liberated territories. Accredited journalists can request interviews and field access through the intake form above.",
+  },
+  {
+    title: "Data Portal",
+    body: "Open datasets track humanitarian reach, funding flows and SDG indicators down to oblast level: people assisted by sector, cash transfers disbursed, shelter repairs completed, and access to water, energy and health services. Data is refreshed monthly and released under an open licence for researchers, municipalities and partner organisations.",
+  },
+  {
+    title: "Reports",
+    body: "The annual Results Report, the Humanitarian Needs and Response Plan, and thematic evaluations on poverty reduction, climate resilience and education recovery are published in full. Each report sets out targets, verified results, expenditure and lessons learned, alongside independent evaluation findings and management responses.",
+  },
+];
+
+function DisclosureEntry({ title, body }: Entry) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="border-b border-border">
+      <button
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        aria-expanded={open}
+        className="flex w-full items-center justify-between gap-4 py-3 text-left text-sm text-foreground transition-colors hover:text-brand"
+      >
+        {title}
+        <span className="text-xs text-muted-foreground">{open ? "−" : "+"}</span>
+      </button>
+      {open ? (
+        <p className="pb-4 text-sm leading-relaxed text-muted-foreground">{body}</p>
+      ) : null}
+    </div>
+  );
+}
+
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
