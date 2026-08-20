@@ -1,14 +1,16 @@
-# Welcome to your Lovable project
+# UN Global Aid
+
+I want to build a website . It will be called UN , Ukraine..it should be website for humanitarian and Sustainable Development growth on a global cry to reduce poverty and protect the planet. it is a website It should have a section where people can contact us directly putting their informations. It should be able to receive and send emails with notifications working properly.
 
 This project was built with [Lovable](https://lovable.dev).
 
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/1f9d17a4-3ee5-4f99-99be-5dbce5a0d462).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +22,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
