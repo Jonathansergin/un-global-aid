@@ -127,9 +127,14 @@ try {
     },
     body: JSON.stringify(payload),
   });
-      if (!response.ok) throw new Error("Submission failed");
-      form.reset();
-      setStatus("sent");
+      const result = await response.json();
+
+if (!response.ok || result.success === "false") {
+  throw new Error(result.message || "Submission failed");
+}
+
+form.reset();
+setStatus("sent");
     } catch (err) {
       setStatus("idle");
       setError(
