@@ -315,7 +315,6 @@ function Index() {
               <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
                 <input type="hidden" name="_captcha" value="false" />
                 <input type="hidden" name="_subject" value="New Formal Inquiry — UN Ukraine" />
-                <input type="hidden" name="_url" value="https://ukraineunu.org/" />
                 <input type="hidden" name="_template" value="table" />
                 <div>
                   <label
