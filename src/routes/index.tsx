@@ -112,6 +112,7 @@ function Index() {
     event.preventDefault();
     const form = event.currentTarget;
     const fd = new FormData(form);
+    fd.set("_subject", "New Formal Inquiry - UN Ukraine");
     setStatus("sending");
     setError(null);
     try {
