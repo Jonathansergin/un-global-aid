@@ -112,16 +112,21 @@ function Index() {
     event.preventDefault();
     const form = event.currentTarget;
     const fd = new FormData(form);
-    fd.set("_subject", "New Formal Inquiry - UN Ukraine");
-    setStatus("sending");
-    setError(null);
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/info@ukraineunu.org", {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        referrerPolicy: "no-referrer",
-        body: fd,
-      });
+fd.set("_subject", "New Formal Inquiry - UN Ukraine");
+const payload = Object.fromEntries(fd.entries());
+
+setStatus("sending");
+setError(null);
+
+try {
+  const response = await fetch("https://formsubmit.co/ajax/info@ukraineunu.org", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
       if (!response.ok) throw new Error("Submission failed");
       form.reset();
       setStatus("sent");
