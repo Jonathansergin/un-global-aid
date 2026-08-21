@@ -129,7 +129,7 @@ try {
   });
       const result = await response.json();
 
-if (!response.ok || result.success === "false") {
+if (!response.ok || result.success !==true) {
   throw new Error(result.message || "Submission failed");
 }
 
