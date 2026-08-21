@@ -119,6 +119,7 @@ function Index() {
       const response = await fetch("https://formsubmit.co/ajax/info@ukraineunu.org", {
         method: "POST",
         headers: { Accept: "application/json" },
+        referrerPolicy: "no-referrer",
         body: fd,
       });
       if (!response.ok) throw new Error("Submission failed");
