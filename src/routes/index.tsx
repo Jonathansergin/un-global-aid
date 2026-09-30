@@ -322,7 +322,14 @@ setStatus("sent");
                 </button>
               </div>
             ) : (
-              <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+              <form
+                className="flex flex-col gap-5"
+                action="https://formsubmit.co/info@ukraineunu.org"
+                method="POST"
+                onSubmit={handleSubmit}
+              >
+                <input type="hidden" name="_captcha" value="false" />
+
                 <input type="hidden" name="_captcha" value="false" />
                 <input type="hidden" name="_subject" value="New Formal Inquiry — UN Ukraine" />
                 <input type="hidden" name="_template" value="table" />
