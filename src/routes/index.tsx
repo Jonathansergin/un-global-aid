@@ -303,7 +303,7 @@ function Index() {
               <form
                 id="inquiry-form"
                 className="flex flex-col gap-5"
-                action="https://formsubmit.co/info@ukraineunu.org"
+                action="https://api.web3forms.com/submit"
                 method="POST"
                 target="formsubmit-frame"
                 onSubmit={handleSubmit}
@@ -314,10 +314,11 @@ function Index() {
                   className="hidden"
                   onLoad={handleFrameLoad}
                 />
-                <input type="hidden" name="_captcha" value="false" />
-
-                <input type="hidden" name="_subject" value="New Formal Inquiry — UN Ukraine" />
-                <input type="hidden" name="_template" value="table" />
+                {/* Web3Forms access keys are public by design; delivers to info@ukraineunu.org */}
+                <input type="hidden" name="access_key" value="17a81c94-e61f-4dd6-a4da-e1aeb44cf968" />
+                <input type="hidden" name="subject" value="New Formal Inquiry — UN Ukraine" />
+                <input type="hidden" name="from_name" value="UN Ukraine Website" />
+                <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
                 <div>
                   <label
                     htmlFor="fullName"
