@@ -1,0 +1,1 @@
+drop policy if exists "Authenticated team can read inquiries" on public.contact_submissions;
