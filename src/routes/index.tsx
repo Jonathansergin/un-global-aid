@@ -330,7 +330,6 @@ setStatus("sent");
               >
                 <input type="hidden" name="_captcha" value="false" />
 
-                <input type="hidden" name="_captcha" value="false" />
                 <input type="hidden" name="_subject" value="New Formal Inquiry — UN Ukraine" />
                 <input type="hidden" name="_template" value="table" />
                 <div>
