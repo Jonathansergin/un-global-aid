@@ -7,7 +7,7 @@ const isLovableSandbox =
 export default defineConfig({
   // GitHub Pages needs static output.
   // Keep Lovable's normal build behavior inside Lovable.
-  nitro: isLovableSandbox ? undefined : false,
+  ...(isLovableSandbox ? {} : { nitro: false }),
 
   // GitHub Pages hosts this project under /un-global-aid/
   vite: isLovableSandbox
