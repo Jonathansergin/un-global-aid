@@ -6,4 +6,4 @@
 - [x] Published to https://ukraineunu.org.
 
 ## Open
-- [ ] User confirms a real inquiry from the live site arrives in info@ukraineunu.org.
+- [ ] User points the Web3Forms "Ukraineunu" form at info@ukraineunu.org (it currently goes to their Proton address), or sends a new key made with info@ukraineunu.org.
