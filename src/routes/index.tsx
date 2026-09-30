@@ -108,41 +108,19 @@ function Index() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
   const [error, setError] = useState<string | null>(null);
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const fd = new FormData(form);
-fd.set("_subject", "New Formal Inquiry - UN Ukraine");
-const payload = Object.fromEntries(fd.entries());
+  // Native POST into a hidden frame: avoids browser cross-site blocking
+  // ("Load failed" in Safari) while keeping the visitor on the page.
+  function handleSubmit(_event: FormEvent<HTMLFormElement>) {
+    setError(null);
+    setStatus("sending");
+  }
 
-setStatus("sending");
-setError(null);
-
-try {
-  const response = await fetch("https://formsubmit.co/ajax/info@ukraineunu.org", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
-      const result = await response.json();
-
-if (!response.ok || result.success !==true) {
-  throw new Error(result.message || "Submission failed");
-}
-
-form.reset();
-setStatus("sent");
-    } catch (err) {
-      setStatus("idle");
-      setError(
-        err instanceof Error && err.message
-          ? err.message
-          : "We couldn't send your dispatch. Please try again.",
-      );
-    }
+  function handleFrameLoad() {
+    setStatus((s) => {
+      if (s !== "sending") return s;
+      (document.getElementById("inquiry-form") as HTMLFormElement | null)?.reset();
+      return "sent";
+    });
   }
 
   return (
@@ -323,11 +301,19 @@ setStatus("sent");
               </div>
             ) : (
               <form
+                id="inquiry-form"
                 className="flex flex-col gap-5"
                 action="https://formsubmit.co/info@ukraineunu.org"
                 method="POST"
+                target="formsubmit-frame"
                 onSubmit={handleSubmit}
               >
+                <iframe
+                  name="formsubmit-frame"
+                  title="Form submission"
+                  className="hidden"
+                  onLoad={handleFrameLoad}
+                />
                 <input type="hidden" name="_captcha" value="false" />
 
                 <input type="hidden" name="_subject" value="New Formal Inquiry — UN Ukraine" />

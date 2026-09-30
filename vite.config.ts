@@ -4,30 +4,19 @@ const isLovableSandbox =
   process.env["LOVABLE_SANDBOX"] === "1" ||
   !!process.env["DEV_SERVER__PROJECT_PATH"];
 
-export default defineConfig({
-  // GitHub Pages needs static output.
-  // Keep Lovable's normal build behavior inside Lovable.
-  nitro: isLovableSandbox ? undefined : false,
-
-  // GitHub Pages hosts this project under /un-global-aid/
-  vite: isLovableSandbox
-    ? {}
-    : {
-        base: "/un-global-aid/",
-      },
-
-  tanstackStart: isLovableSandbox
-    ? {
+// Inside Lovable: keep the normal build. Elsewhere (GitHub Pages): static output
+// under /un-global-aid/ with prerendered HTML.
+export default isLovableSandbox
+  ? defineConfig({
+      tanstackStart: {
         server: { entry: "server" },
-      }
-    : {
-        // Generate static HTML for GitHub Pages.
-        prerender: {
-          enabled: true,
-          crawlLinks: true,
-        },
-
-        // Make sure the home page is generated.
+      },
+    })
+  : defineConfig({
+      nitro: false,
+      vite: { base: "/un-global-aid/" },
+      tanstackStart: {
+        prerender: { enabled: true, crawlLinks: true },
         pages: [{ path: "/" }],
       },
-});
+    });
