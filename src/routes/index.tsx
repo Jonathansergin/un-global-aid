@@ -315,7 +315,7 @@ function Index() {
                   onLoad={handleFrameLoad}
                 />
                 {/* Web3Forms access keys are public by design; delivers to info@ukraineunu.org */}
-                <input type="hidden" name="access_key" value="17a81c94-e61f-4dd6-a4da-e1aeb44cf968" />
+                <input type="hidden" name="access_key" value="e1344b76-ea99-4f30-a3ce-1a649518e71e" />
                 <input type="hidden" name="subject" value="New Formal Inquiry — UN Ukraine" />
                 <input type="hidden" name="from_name" value="UN Ukraine Website" />
                 <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
