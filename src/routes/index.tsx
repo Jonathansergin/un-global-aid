@@ -361,7 +361,7 @@ function Index() {
                   </label>
                   <select
                     id="subject"
-                    name="subject"
+                    name="subject_matter"
                     defaultValue="Program Partnership"
                     className="h-10 w-full rounded-sm border border-border bg-secondary px-3 text-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand/30"
                   >
