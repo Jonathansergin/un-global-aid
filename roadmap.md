@@ -1,5 +1,9 @@
 # Roadmap
 
-## In progress
-- [ ] Connect custom domain ukraineunu.org (root + www) — DNS records drifted; user must add A records → 185.158.133.1 and the _lovable TXT verification records at their registrar (Namecheap). Domain connected but awaiting DNS. Publishing required after DNS verifies.
-- [ ] Contact form: migrate from Lovable backend to FormSubmit (info@ukraineunu.org) — action/method/_captcha done; verify submission end-to-end.
+## Done
+- [x] Connect custom domain ukraineunu.org (root + www) — DNS verified, both domains active; root is primary, www redirects to it.
+- [x] Contact form migrated from Lovable backend to FormSubmit (info@ukraineunu.org); old submissions table removed.
+- [x] Publishing requested for https://ukraineunu.org.
+
+## Open
+- [ ] User activates FormSubmit for info@ukraineunu.org (first submission triggers an activation email).
