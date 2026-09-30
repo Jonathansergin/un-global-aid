@@ -301,11 +301,19 @@ function Index() {
               </div>
             ) : (
               <form
+                id="inquiry-form"
                 className="flex flex-col gap-5"
                 action="https://formsubmit.co/info@ukraineunu.org"
                 method="POST"
+                target="formsubmit-frame"
                 onSubmit={handleSubmit}
               >
+                <iframe
+                  name="formsubmit-frame"
+                  title="Form submission"
+                  className="hidden"
+                  onLoad={handleFrameLoad}
+                />
                 <input type="hidden" name="_captcha" value="false" />
 
                 <input type="hidden" name="_subject" value="New Formal Inquiry — UN Ukraine" />
